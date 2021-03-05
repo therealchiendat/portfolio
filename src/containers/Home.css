@@ -1,0 +1,4 @@
+pre:not(:empty) {
+    width: 100vw;
+    max-height: 95vh;
+}

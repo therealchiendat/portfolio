@@ -1,0 +1,21 @@
+#other-window {
+    position: fixed;
+    bottom: 0;
+    top: calc(100vh - 20px);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#other-window a {
+    margin: 0 0 0 10px;
+}
+
+#other-window a:after {
+    content: '';
+    padding: 0 5px;
+    height: 1em;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-color: inherit;
+}

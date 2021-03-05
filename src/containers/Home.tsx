@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { textContent, textContent1, textContent2 } from './text';
 import { resumeContent, resumeContentRenderred } from './resume';
+import './Home.css';
 
 let iSpeed = 30; // time delay of print out
 let iIndex = 0; // start printing array at this posision
@@ -58,18 +59,18 @@ export default function Home() {
         if (iTextPos++ === textLength) {
             iTextPos = 0;
             iIndex = 0;
-            textLength = resumeContent[0].length;
             if (code === textContent) {
+                textLength = resumeContent[0].length;
                 typewriterResume();
             } else if (code === textContent1) {
+                textLength = resumeContentRenderred[0].length;
                 renderResume();
             }
         } else if (bracketFlag === 0 && lastChar === '.') {
             setTimeout(_ => typewriterText(code), 20 * iSpeed)
-        } else if (bracketFlag === 1) {
+        } else if (bracketFlag >= 1) {
             setTimeout(_ => typewriterText(code), 5)
-        }
-        else if (spanFlag) {
+        } else if (spanFlag) {
             setTimeout(_ => typewriterText(code), 0);
         } else {
             setTimeout(_ => typewriterText(code), iSpeed);
@@ -135,8 +136,6 @@ export default function Home() {
                     </pre>
 
                 </div>
-            </div>
-            <div id="other-window">
             </div>
         </div>
     );
