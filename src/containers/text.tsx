@@ -25,8 +25,8 @@ export const textContent = new Array(`<span class="comment">/**
 }
 
 <span class="selector">#sucks:before</span> {
-  <span class="key">content</span>:<span class="value"> 'Sucks'</span>;
   <span class="key">text-decoration</span>:<span class="value"> line-through</span>;
+  <span class="key">content</span>:<span class="value"> 'Sucks'</span>;
 }
 
 <span class="selector">#sucks:after</span> {
