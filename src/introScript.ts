@@ -179,10 +179,6 @@ export const cssC = `
 
 /**
  * I hope you enjoyed this. The real portfolio is just below.
- *
- * Thanks to Jake Albaugh, who was the first (that I know of)
- * to do a page like this. See his work at
- * codepen.io/jakealbaugh
  */
 `;
 
