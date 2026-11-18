@@ -13,8 +13,9 @@ export const cssA = `/**
  * Let's build this page... from scratch!
  */
 
-.stage, .stage pre {
-  transition: background-color 1s, color 1s;
+.stage, .stage pre, .windows, .windows > div {
+  transition: background-color 1s, color 1s, grid-template-columns 1s,
+    max-height 1s, opacity 1s, gap 1s, transform 1s;
 }
 
 /**
@@ -66,7 +67,22 @@ export const cssA = `/**
 
 /**
  * Impressed?... Now let's get ready to do some "movement".
- * But first, the code is not formatted.
+ * Make some room for a second window.
+ */
+
+.windows {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+#resume-window-container {
+  opacity: 1;
+  max-height: 80vh;
+  overflow: visible;
+}
+
+/**
+ * This is good, but the code is not formatted.
  * Let's make it more readable!
  */
 
