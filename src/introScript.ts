@@ -44,6 +44,7 @@ export const cssA = `/**
 .stage {
   background: rgb(63, 82, 99);
   color: white;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
 /**

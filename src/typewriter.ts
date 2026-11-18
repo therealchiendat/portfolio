@@ -12,9 +12,9 @@ interface Options {
 }
 
 // Per-character delays in ms.
-const CODE_MS = 5;
-const COMMENT_MS = 10;
-const MD_MS = 12;
+const CODE_MS = 12;
+const COMMENT_MS = 32;
+const MD_MS = 30;
 
 /**
  * Types text straight into the DOM (no React re-render per character) and
@@ -94,8 +94,10 @@ export function runIntro(o: Options) {
 
           const inComment = tok.cls === 'tk-comment';
           let delay = !isCss ? MD_MS : inComment ? COMMENT_MS : CODE_MS;
-          if (inComment && (ch === '.' || ch === '!')) delay += 110;
-          if (ch === '\n') delay += inComment ? 40 : 10;
+          const next = tok.text[ci];
+          const endOfSentence = (ch === '.' || ch === '!' || ch === '?') && (next === undefined || /\s/.test(next));
+          if (inComment && endOfSentence) delay += 380;
+          if (ch === '\n') delay += inComment ? 70 : 25;
           nextAt += delay;
 
           if (ci >= tok.text.length) { ti++; ci = 0; node = null; }

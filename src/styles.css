@@ -58,8 +58,8 @@ h3 span { color: var(--muted); font-weight: 500; }
 
 /* ---- Intro stage (the page types out CSS that styles itself) ---- */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-.stage { min-height: 100vh; min-height: 100svh; padding: 24px 16px 32px; display: flex; flex-direction: column; align-items: center; }
-#title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; margin: 16px 0 24px; text-align: center; }
+.stage { background: #fff; color: #000; font-family: Georgia, 'Times New Roman', serif; min-height: 100vh; min-height: 100svh; padding: 24px 16px 32px; display: flex; flex-direction: column; align-items: center; }
+#title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700; margin: 16px 0 24px; text-align: center; }
 .windows { display: flex; gap: 16px; width: min(1200px, 100%); align-items: flex-start; }
 #resume-window-container, #code-window-container { flex: 1 1 0; min-width: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .stage pre { margin: 0; height: 62vh; height: min(62svh, 560px); overflow: auto; overscroll-behavior: contain;
@@ -69,7 +69,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .cursor::after { content: '_'; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .stage-actions { margin-top: 24px; min-height: 44px; }
-.stage .btn { cursor: pointer; font: inherit; font-weight: 600; }
+.stage .btn { cursor: pointer; font: 600 1rem system-ui, sans-serif; background: #f2f2f2; color: #111; border-color: #999; }
 #md { white-space: normal; font-family: system-ui, sans-serif; }
 #md ul { padding-left: 20px; }
 @media (max-width: 800px) {
