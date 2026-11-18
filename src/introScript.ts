@@ -13,8 +13,8 @@ export const cssA = `/**
  * Let's build this page... from scratch!
  */
 
-.stage * {
-  transition: all 1s;
+.stage, .stage pre {
+  transition: background-color 1s, color 1s;
 }
 
 /**
@@ -112,8 +112,8 @@ export const cssB = `
  */
 
 @keyframes render {
-  0%   { opacity: 0; filter: brightness(4); }
-  100% { opacity: 1; filter: none; }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 #resume-window .rendered {

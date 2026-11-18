@@ -1,16 +1,17 @@
-import type { ReactNode } from 'react';
+export interface Token {
+  cls: string | null;
+  text: string;
+}
 
-// Tiny CSS highlighter. Classes are styled by the CSS the page types out,
-// so the code stays plain until the page "teaches itself" to colour it.
-export function highlightCss(src: string): ReactNode[] {
-  const out: ReactNode[] = [];
+// Tiny CSS tokenizer. Classes (tk-*) are styled by the CSS the page types
+// out itself, so the code stays uncoloured until the page "teaches" itself.
+export function tokenizeCss(src: string): Token[] {
+  const out: Token[] = [];
+  const push = (cls: string | null, text: string) => {
+    if (text) out.push({ cls, text });
+  };
   let i = 0;
   let depth = 0;
-  let k = 0;
-  const push = (cls: string | null, text: string) => {
-    if (!text) return;
-    out.push(cls ? <span key={k++} className={cls}>{text}</span> : text);
-  };
   while (i < src.length) {
     const c = src[i];
     if (src.startsWith('/*', i)) {
@@ -25,8 +26,7 @@ export function highlightCss(src: string): ReactNode[] {
       let j = i;
       while (j < src.length && !'{};'.includes(src[j]) && !src.startsWith('/*', j)) j++;
       const chunk = src.slice(i, j);
-      const isSelector = depth === 0 || src[j] === '{';
-      if (isSelector) {
+      if (depth === 0 || src[j] === '{') {
         const lead = chunk.match(/^\s*/)![0];
         push(null, lead);
         push('tk-selector', chunk.slice(lead.length));
