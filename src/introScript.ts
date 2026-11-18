@@ -102,7 +102,7 @@ export const cssA = `/**
 
 #code-window-container {
   transform-origin: right;
-  transform: rotateY(-15deg);
+  transform: rotateY(calc(-15deg + var(--tilt-x, 0deg))) rotateX(var(--tilt-y, 0deg));
 }
 
 /**
@@ -114,7 +114,7 @@ export const cssA = `/**
 
 #resume-window-container {
   transform-origin: left;
-  transform: rotateY(15deg);
+  transform: rotateY(calc(15deg + var(--tilt-x, 0deg))) rotateX(var(--tilt-y, 0deg));
 }
 
 #resume-window-container:before {
@@ -167,6 +167,14 @@ export const cssC = `
   color: #ddd;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
+}
+
+/**
+ * One last thing. Let the windows follow your mouse.
+ */
+
+.windows > div {
+  transition: transform 0.15s ease-out;
 }
 
 /**

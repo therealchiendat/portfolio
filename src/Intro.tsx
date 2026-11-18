@@ -12,6 +12,8 @@ export default function Intro() {
   const mdRef = useRef<HTMLPreElement>(null);
   const srcRef = useRef<HTMLDivElement>(null);
   const styleRef = useRef<HTMLStyleElement>(null);
+  const stageRef = useRef<HTMLElement>(null);
+  const windowsRef = useRef<HTMLDivElement>(null);
   const ctl = useRef<ReturnType<typeof runIntro> | null>(null);
 
   useEffect(() => {
@@ -27,14 +29,44 @@ export default function Intro() {
     return () => ctl.current?.cancel();
   }, []);
 
+  // Once the intro is finished, the windows tilt towards the mouse.
+  useEffect(() => {
+    const stage = stageRef.current;
+    const windows = windowsRef.current;
+    if (!done || !stage || !windows || reducedMotion) return;
+    let raf = 0;
+    const set = (x: number, y: number) => {
+      windows.style.setProperty('--tilt-x', `${x.toFixed(2)}deg`);
+      windows.style.setProperty('--tilt-y', `${y.toFixed(2)}deg`);
+    };
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse' || raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+        const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+        set(nx * 7, -ny * 5);
+      });
+    };
+    const onLeave = () => set(0, 0);
+    stage.addEventListener('pointermove', onMove);
+    stage.addEventListener('pointerleave', onLeave);
+    return () => {
+      stage.removeEventListener('pointermove', onMove);
+      stage.removeEventListener('pointerleave', onLeave);
+      cancelAnimationFrame(raf);
+      set(0, 0);
+    };
+  }, [done]);
+
   return (
-    <section className="stage" aria-label="Animated introduction">
+    <section className="stage" ref={stageRef} aria-label="Animated introduction">
       <style ref={styleRef} />
       <div id="title" aria-hidden="true">
         Front End&nbsp;<b id="sucks"><span>Sucks</span></b>
       </div>
 
-      <div className="windows" aria-hidden="true">
+      <div className="windows" ref={windowsRef} aria-hidden="true">
         <div id="resume-window-container">
           <pre id="resume-window" ref={mdRef}>
             <div id="md-src" ref={srcRef} hidden={rendered} />
