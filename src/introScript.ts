@@ -1,0 +1,196 @@
+import { education, experience, profile, projects } from './content';
+
+// The page "writes" this CSS live. Selectors only touch the intro stage so
+// nothing leaks into the portfolio below.
+export const cssA = `/**
+ * Hello, I'm Dat.
+ * I am an engineer by degree,
+ * a developer by profession,
+ * and an artist by heart.
+ *
+ * I build websites, and pretty things.
+ *
+ * Let's build this page... from scratch!
+ */
+
+.stage * {
+  transition: all 1s;
+}
+
+/**
+ * That didn't do anything. Yet!
+ *
+ * Oh wait... almost forgot. Front end doesn't suck.
+ */
+
+#sucks span {
+  display: none;
+}
+
+#sucks:before {
+  text-decoration: line-through;
+  content: 'Sucks';
+}
+
+#sucks:after {
+  content: ' Is Awesome!';
+  color: rgb(0, 175, 255);
+}
+
+/**
+ * Ah, that's better!
+ */
+
+.stage {
+  background: rgb(63, 82, 99);
+  color: white;
+}
+
+/**
+ * This looks like some kind of CSS code, doesn't it?
+ */
+
+.stage pre {
+  border: 1px solid #ccc;
+  background: rgb(48, 48, 48);
+  color: #fff;
+  font-size: 14px;
+  padding: 1vh 0.5vw;
+  box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+#code-window-container:before {
+  content: ' index.css';
+}
+
+/**
+ * Impressed?... Now let's get ready to do some "movement".
+ * But first, the code is not formatted.
+ * Let's make it more readable!
+ */
+
+.tk-comment  { color: #857F6B; font-style: italic; }
+.tk-selector { color: #E69F0F; }
+.tk-key      { color: #64D5EA; }
+.tk-value    { color: #BE84F2; }
+
+/**
+ * Now we're getting somewhere.
+ * Time for some change in perspective.
+ */
+
+.windows {
+  perspective: 1000px;
+}
+
+#code-window-container {
+  transform-origin: right;
+  transform: rotateY(-15deg);
+}
+
+/**
+ * This is supposed to be my portfolio
+ * but I have nothing.
+ * Actually... I do have something!
+ * So I am making my resume here, because why not!
+ */
+
+#resume-window-container {
+  transform-origin: left;
+  transform: rotateY(15deg);
+}
+
+#resume-window-container:before {
+  content: ' resume.md';
+}
+`;
+
+export const cssB = `
+/**
+ * That markdown on the left doesn't look great.
+ * Let's render it.
+ */
+
+@keyframes render {
+  0%   { opacity: 0; filter: brightness(4); }
+  100% { opacity: 1; filter: none; }
+}
+
+#resume-window .rendered {
+  animation: render 2s forwards;
+}
+
+/**
+ * Alright. We're ready.
+ *
+ * 3...
+ * 2...
+ * 1...
+ *
+ * Okay here we go!
+ */
+`;
+
+export const cssC = `
+/**
+ * The text could use some tweaks.
+ */
+
+#md {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#md ul, #md p {
+  margin: 0;
+}
+
+#md h1, #md h2 {
+  margin: 8px 0 4px;
+  display: inline-block;
+  color: #ddd;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+/**
+ * We're almost done.
+ */
+
+.stage pre:hover {
+  box-shadow: 0 0 40px 5px rgba(255, 255, 255, 0.4);
+}
+
+/**
+ * I hope you enjoyed this. The real portfolio is just below.
+ *
+ * Thanks to Jake Albaugh, who was the first (that I know of)
+ * to do a page like this. See his work at
+ * codepen.io/jakealbaugh
+ */
+`;
+
+export const resumeMd = `# Dat's Resume
+
+${profile.name}
+${profile.role}
+
+## Contact
+
+* ${profile.email}
+* github.com/therealchiendat
+* linkedin.com/in/chiendat
+
+## Experience
+
+${experience.map((j) => `* ${j.company}: ${j.title} (${j.period})`).join('\n')}
+
+## Projects
+
+${projects.map((p) => `* ${p.name}`).join('\n')}
+
+## Education
+
+* ${education.school}, ${education.period}
+`;
+
+export const fullCss = cssA + cssB + cssC;

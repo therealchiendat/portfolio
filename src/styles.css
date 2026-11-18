@@ -55,3 +55,22 @@ h3 span { color: var(--muted); font-weight: 500; }
 .footer { padding: 48px 0 32px; color: var(--muted); font-size: 0.9rem; }
 @media (max-width: 640px) { .job { grid-template-columns: 1fr; gap: 4px; } .nav nav { gap: 12px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---- Intro stage (the page types out CSS that styles itself) ---- */
+.stage { min-height: 100vh; padding: 24px 16px 32px; display: flex; flex-direction: column; align-items: center; }
+#title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; margin: 16px 0 24px; text-align: center; }
+.windows { display: flex; gap: 16px; width: min(1200px, 100%); align-items: flex-start; }
+#resume-window-container, #code-window-container { flex: 1 1 0; min-width: 0; }
+.stage pre { margin: 0; height: 65vh; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+#resume-window-container:before, #code-window-container:before { display: block; font: 12px ui-monospace, monospace; opacity: 0.7; padding: 0 4px 4px; }
+.stage-actions { margin-top: 24px; }
+.stage .btn { cursor: pointer; font: inherit; font-weight: 600; }
+#md { font-family: system-ui, sans-serif; white-space: normal; }
+#md ul { padding-left: 20px; }
+@media (max-width: 800px) {
+  .windows { flex-direction: column; }
+  .stage pre { height: 40vh; }
+  #resume-window-container, #code-window-container { transform: none !important; width: 100%; flex: none; }
+}
+@media (prefers-reduced-motion: reduce) { .stage * { transition: none !important; } }
