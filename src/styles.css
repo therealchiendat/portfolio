@@ -58,12 +58,12 @@ h3 span { color: var(--muted); font-weight: 500; }
 
 /* ---- Intro stage (the page types out CSS that styles itself) ---- */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-.stage { background: #fff; color: #000; font-family: Georgia, 'Times New Roman', serif; min-height: 100vh; min-height: 100svh; padding: 24px 16px 32px; display: flex; flex-direction: column; align-items: center; }
+.stage { background: #fff; color: #000; font-family: Georgia, 'Times New Roman', serif; min-height: 100vh; min-height: 100svh; padding: 24px 16px 72px; display: flex; flex-direction: column; align-items: center; position: relative; }
 #title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700; margin: 16px 0 24px; text-align: center; }
 .windows { display: grid; grid-template-columns: 0fr 1fr; gap: 0; width: min(1200px, 100%); align-items: start; }
 #resume-window-container, #code-window-container { min-width: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 #resume-window-container { opacity: 0; overflow: hidden; }
-.stage pre { margin: 0; height: 62vh; height: min(62svh, 560px); overflow: auto; overscroll-behavior: contain;
+.stage pre { margin: 0; height: 56vh; height: min(56svh, 560px); overflow: auto; overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch; white-space: pre-wrap; overflow-wrap: anywhere;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 #resume-window-container:before, #code-window-container:before { content: '\00a0'; display: block; min-height: 1.4em; font: 12px ui-monospace, monospace; opacity: 0.7; padding: 0 4px 4px; }
@@ -78,7 +78,25 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .windows { display: flex; flex-direction: column; }
   #code-window-container { order: -1; width: 100%; }
   #resume-window-container { width: 100%; max-height: 0; }
-  .stage pre { height: 34vh; height: min(34svh, 300px); }
+  .stage pre { height: 26vh; height: min(26svh, 240px); }
   #resume-window-container, #code-window-container { transform: none !important; }
 }
 @media (prefers-reduced-motion: reduce) { .stage, .stage * { transition: none !important; } }
+
+/* ---- Scroll threshold: the intro drifts up while the indicator fills ---- */
+.stage-fx { display: flex; flex-direction: column; align-items: center; width: 100%; flex: 1;
+  transform: translateY(calc(var(--p, 0) * -40px)); }
+.scroll-hint { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; display: flex; flex-direction: column;
+  align-items: center; gap: 8px; font: 600 0.7rem system-ui, sans-serif; letter-spacing: 0.14em; text-transform: uppercase;
+  opacity: 0.8; pointer-events: none; }
+.scroll-hint .track { position: relative; width: 3px; height: 40px; border-radius: 3px; overflow: hidden; background: rgba(128, 128, 128, 0.4); }
+.scroll-hint .track i { position: absolute; inset: 0; background: currentColor; transform-origin: top; transform: scaleY(var(--p, 0)); }
+.scroll-hint span:first-child { animation: hint-bob 1.8s ease-in-out infinite; }
+@keyframes hint-bob { 50% { transform: translateY(3px); } }
+.back-hint { position: fixed; top: 0; left: 0; right: 0; z-index: 50; pointer-events: none; text-align: center;
+  font: 600 0.75rem system-ui, sans-serif; color: var(--accent); }
+.back-hint span { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 999px; background: var(--surface);
+  border: 1px solid var(--line); opacity: min(1, calc(var(--p, 0) * 4)); }
+.back-hint i { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); transform-origin: left; transform: scaleX(var(--p, 0)); }
+html { overscroll-behavior-y: none; }
+@media (prefers-reduced-motion: reduce) { .stage-fx { transform: none; } .scroll-hint span:first-child { animation: none; } }
