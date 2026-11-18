@@ -1,3 +1,4 @@
+import Intro from './Intro';
 import { education, experience, highlights, profile, projects, skills } from './content';
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -12,6 +13,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 export default function App() {
   return (
     <>
+      <Intro />
       <header className="nav">
         <a className="brand" href="#top">CD</a>
         <nav aria-label="Primary">
