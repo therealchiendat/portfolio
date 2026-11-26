@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { education, experience, profile, projects } from './content';
+import { companies, profile, projects } from './content';
 import { runIntro } from './typewriter';
 import { createScrollGate } from './scrollGate';
 
@@ -120,12 +120,10 @@ function Rendered() {
       </ul>
       <h2>Experience</h2>
       <ul>
-        {experience.map((j) => <li key={j.company}>{j.company}: {j.title} ({j.period})</li>)}
+        {companies.map((c) => <li key={c}>{c}</li>)}
       </ul>
       <h2>Projects</h2>
       <ul>{projects.map((p) => <li key={p.name}>{p.name}</li>)}</ul>
-      <h2>Education</h2>
-      <ul><li>{education.school}, {education.period}</li></ul>
     </div>
   );
 }

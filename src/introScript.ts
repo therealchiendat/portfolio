@@ -1,4 +1,4 @@
-import { education, experience, profile, projects } from './content';
+import { companies, profile, projects } from './content';
 
 // The page "writes" this CSS live. Selectors only touch the intro stage so
 // nothing leaks into the portfolio below.
@@ -203,15 +203,11 @@ ${profile.role}
 
 ## Experience
 
-${experience.map((j) => `* ${j.company}: ${j.title} (${j.period})`).join('\n')}
+${companies.map((c) => `* ${c}`).join('\n')}
 
 ## Projects
 
 ${projects.map((p) => `* ${p.name}`).join('\n')}
-
-## Education
-
-* ${education.school}, ${education.period}
 `;
 
 export const fullCss = cssA + cssB + cssC;
