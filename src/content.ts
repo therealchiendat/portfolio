@@ -19,8 +19,8 @@ export interface Project {
   linkLabel: string;
 }
 
-// TODO: Skye's App Store URL (https://apps.apple.com/app/id…).
-const SKYE_APP_STORE = 'https://skye.chiendat.com';
+// From the apple-itunes-app meta tag on Skye's pages.
+const SKYE_APP_STORE = 'https://apps.apple.com/app/id6835607718';
 
 export const projects: Project[] = [
   {
