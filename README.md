@@ -1,6 +1,6 @@
 # portfolio
 
-Personal portfolio for Chien Dat Nguyen Dinh. Vite, React and TypeScript.
+Personal portfolio. Vite, React and TypeScript.
 
 ## Develop
 

@@ -1,5 +1,5 @@
 import Intro from './Intro';
-import { education, experience, highlights, profile, projects, skills } from './content';
+import { companies, profile, projects } from './content';
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
@@ -19,78 +19,39 @@ export default function App() {
         <nav aria-label="Primary">
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
 
       <main id="top">
         <div className="hero">
-          <p className="eyebrow">{profile.location}</p>
           <h1>{profile.name}</h1>
           <p className="role">{profile.role}</p>
           <p className="headline">{profile.headline}</p>
-          <p className="lead">{profile.summary}</p>
           <div className="cta">
             <a className="btn primary" href={`mailto:${profile.email}`}>Get in touch</a>
             {profile.links.map((l) => (
               <a key={l.href} className="btn" href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
             ))}
           </div>
-          <ul className="stats">
-            {highlights.map((h) => (
-              <li key={h.label}>
-                <strong>{h.value}</strong>
-                <span>{h.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <Section id="experience" title="Experience">
-          <ol className="timeline">
-            {experience.map((job) => (
-              <li key={`${job.company}-${job.period}`} className="job">
-                <div className="job-meta">{job.period}</div>
-                <div>
-                  <h3>{job.title} <span>· {job.company}</span></h3>
-                  {job.summary && <p className="muted">{job.summary}</p>}
-                  <ul>
-                    {job.bullets.map((b) => <li key={b}>{b}</li>)}
-                  </ul>
-                  <ul className="chips">
-                    {job.stack.map((s) => <li key={s}>{s}</li>)}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <ul className="chips">
+            {companies.map((c) => <li key={c}>{c}</li>)}
+          </ul>
         </Section>
 
-        <Section id="projects" title="Projects & open source">
+        <Section id="projects" title="Projects">
           <div className="cards">
             {projects.map((p) => (
               <article key={p.name} className="card">
-                <h3>{p.href ? <a href={p.href} target="_blank" rel="noreferrer">{p.name} ↗</a> : p.name}</h3>
+                <h3><a href={p.href} target="_blank" rel="noreferrer">{p.name} ↗</a></h3>
                 <p>{p.blurb}</p>
-                <ul className="chips">{p.tags.map((t) => <li key={t}>{t}</li>)}</ul>
+                <a href={p.href} target="_blank" rel="noreferrer">{p.linkLabel}</a>
               </article>
             ))}
           </div>
-        </Section>
-
-        <Section id="skills" title="Skills">
-          <div className="skills">
-            {Object.entries(skills).map(([group, items]) => (
-              <div key={group}>
-                <h3>{group}</h3>
-                <ul className="chips">{items.map((i) => <li key={i}>{i}</li>)}</ul>
-              </div>
-            ))}
-          </div>
-          <p className="muted edu">
-            {education.degree}, {education.school} ({education.period})
-          </p>
         </Section>
 
         <Section id="contact" title="Contact">
